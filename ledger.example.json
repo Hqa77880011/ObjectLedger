@@ -1,0 +1,62 @@
+{
+  "feature_dimensions": 128,
+  "cue_dimensions": 8,
+  "locations": [
+    "counter",
+    "hand",
+    "drawer_A",
+    "shelf",
+    "room_B"
+  ],
+  "gap_scale": 60,
+  "transitions": {
+    "pick-up": [
+      [
+        "counter",
+        "hand"
+      ],
+      [
+        "shelf",
+        "hand"
+      ]
+    ],
+    "put-down": [
+      [
+        "hand",
+        "counter"
+      ],
+      [
+        "hand",
+        "shelf"
+      ]
+    ],
+    "enter-container": [
+      [
+        "hand",
+        "drawer_A"
+      ]
+    ],
+    "exit-container": [
+      [
+        "drawer_A",
+        "hand"
+      ]
+    ],
+    "leave-view": [
+      [
+        "hand",
+        "room_B"
+      ]
+    ],
+    "reappear": [
+      [
+        "room_B",
+        "counter"
+      ],
+      [
+        "drawer_A",
+        "hand"
+      ]
+    ]
+  }
+}
