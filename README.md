@@ -61,3 +61,15 @@ Continuous-ledger writes a learned propagated appearance feature while hidden. T
 `metrics.json` includes reappearance identity accuracy, fixed-front-end IDF1, false merges/splits per 100 object episodes, recovery delay and unrecovered fraction, hidden-existence AUROC/AUPR, Brier score, 15 equal-mass-bin ECE, five-state macro-F1, reachable-set recall, mean explicit set size and source/location accuracy. IDF1 uses optimal global predicted-to-reference identity matching within each video. Recovery delay is averaged over eventually recovered episodes and accompanied by unrecovered fraction. A precise ground-truth location is not counted as recalled by the aggregate unknown slot. Undefined class/population metrics are `null`.
 
 Inference timing covers the ledger/controller and excludes the fixed visual front end. Entries grow with the number of encountered objects; each entry's explicit hypothesis support is bounded by `--slots`, independently of video length. Output/audit logs are written separately from the live ledger. The compact transition model uses a learned event MLP and sparse allowed categorical transition kernels. All category/appearance observations and inspected-empty cues must come from the prefix-available front end. Future identity labels contribute delayed training losses only.
+
+## Fixed reproduction setting
+
+128-dimensional detection features, 8-dimensional cues, five location hypotheses, 40 epochs seed0; detection-conditioned identity/existence evaluation.
+
+The checked-in entry point fixes data seeds, methods, budgets and output paths. Inspect its commands without starting any computation:
+
+```bash
+python reproduce.py --plan --data data/data
+```
+
+Remove `--plan` to execute the registered pipeline in a fresh output directory. The entry point calls the existing implementation; it does not insert paper results. Installation uses the package instructions above.
