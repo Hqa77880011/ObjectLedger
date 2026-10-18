@@ -64,12 +64,11 @@ Inference timing covers the ledger/controller and excludes the fixed visual fron
 
 ## Fixed reproduction setting
 
-128-dimensional detection features, 8-dimensional cues, five location hypotheses, 40 epochs seed0; detection-conditioned identity/existence evaluation.
-
-The checked-in entry point fixes data seeds, methods, budgets and output paths. Inspect its commands without starting any computation:
+The fixed setting generates 12 training and six held-out textured-object scenes. Each scene contains observed noisy appearance patches, measured locations, hand/door cues and explicit empty-location inspections across pick-up, containment, return, leave-view, reappearance and removal. The 128-dimensional appearance descriptor uses pixel block means and gradients from independently sampled material textures; it never encodes object IDs. Removal is terminal.
 
 ```bash
-python reproduce.py --plan --data data/data
+python reproduce.py --plan
+python reproduce.py --output outputs/finite-setting
 ```
 
-Remove `--plan` to execute the registered pipeline in a fresh output directory. The entry point calls the existing implementation; it does not insert paper results. Installation uses the package instructions above.
+`finite_data.py --output outputs/finite-setting/objects.jsonl --seed 7` supplies the existing ObjectLedger full/continuous pipeline, with eight scene cues, five location hypotheses, 40 epochs and seed 0. Training annotations and evaluation truth are distinct fields from observations; hidden existence/state labels are not scene cues. Identity metrics are conditioned on the supplied finite detections. Optional `--data objects.jsonl` accepts other observed scenes.
